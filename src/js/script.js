@@ -57,8 +57,8 @@ function initTyping() {
         wpm = wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
         
         wpmTag.innerText = wpm;
-        mistakeTag.innerText = Math.floor(100-((mistakes/len)*100));
         cpmTag.innerText = charIndex - mistakes;
+        mistakeTag.innerText = Math.floor(100-((mistakes/charIndex)*100));
     } else {
         clearInterval(timer);
         inpField.value = "";
