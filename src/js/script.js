@@ -9,6 +9,7 @@ const typingText = document.querySelector(".typing-text p"),
 const timeLimitSelect = document.getElementById("time-limit");
 const difficulty = document.getElementById("difficulty-level");
 
+//Set difficulty level
 let level = difficulty.value;
 difficulty.addEventListener("input", () => {
   level = difficulty.value;
@@ -28,6 +29,7 @@ let timer = maxTime,
   charIndex = (mistakes = isTyping = 0),
   len = 0;
 
+//Loads new paragrah
 function loadParagraph() {
   let ranIndex = 0;
   switch (level) {
@@ -43,7 +45,7 @@ function loadParagraph() {
   }
   //const ranIndex = Math.floor(Math.random() * text.length);
   typingText.innerHTML = "";
-  len = text[ranIndex].length;
+  len = text[ranIndex].length; //Length of paragraph
   text[ranIndex].split("").forEach((char) => {
     let span = `<span>${char}</span>`;
     typingText.innerHTML += span;
@@ -53,6 +55,7 @@ function loadParagraph() {
   typingText.addEventListener("click", () => inpField.focus());
 }
 
+//Typing started, thus calculation begins...
 function initTyping() {
   let characters = typingText.querySelectorAll("span");
   let typedChar = inpField.value.split("")[charIndex];
@@ -62,7 +65,7 @@ function initTyping() {
       isTyping = true;
     }
     if (typedChar == null) {
-      if (charIndex > 0) {
+      if (charIndex > 0) { //Backspace pressed
         charIndex--;
         if (characters[charIndex].classList.contains("incorrect")) {
           mistakes--;
@@ -95,6 +98,7 @@ function initTyping() {
   }
 }
 
+//Countdown
 function initTimer() {
   if (timeLeft > 0) {
     timeLeft--;
@@ -108,6 +112,7 @@ function initTimer() {
   }
 }
 
+//Reset Game
 function resetGame() {
   loadParagraph();
   clearInterval(timer);
